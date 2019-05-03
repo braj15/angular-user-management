@@ -1,0 +1,36 @@
+<div class="container" style="text-align: center">
+
+  <!-- <div class="table-container"></div> -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{user.userId}}</td>
+        <td>{{user.name.fname}}</td>
+        <td>{{user.name.lname}}</td>
+        <td>{{user.sex}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div class="button-group">
+
+  <button type="button" class="btn btn-info" routerLink="/success">Confirm</button>
+  &nbsp;&nbsp;
+  <button type="button" class="btn btn-info" (click)="onEdit()">Edit</button>
+  <br><br><br>
+  <div><button class="btn btn-info" (click)="goBack()">Go Back</button></div>
+
+</div>
+
+</div>
+

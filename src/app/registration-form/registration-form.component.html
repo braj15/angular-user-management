@@ -1,0 +1,116 @@
+<div class="container">
+
+  <h2 style="text-align: center">Registration Page</h2>
+  <br>
+
+  <form #regForm="ngForm" (ngSubmit)="regForm.valid && registerUser(regForm.value)">
+
+    <fieldset ngModelGroup="name">
+
+      <h3>Name</h3>
+      <hr>
+
+      <div class="form-group">
+
+        <label for="fname">First Name<span style="color:red">*</span> </label><br>
+        <input type="text" 
+               class="form-control" 
+               name="fname" 
+               [(ngModel)]="user.name.fname" 
+               #fname="ngModel"
+               required
+               pattern="^[a-zA-Z]*$"
+               [ngClass]="{'has-danger': fname.invalid && (fname.dirty || fname.touched),
+                           'has-success': fname.valid && (fname.dirty || fname.touched)}"
+               >
+        <div *ngIf="fname.errors" class="error">
+          <span *ngIf="fname.value != '' && fname.dirty">Can contain alphabets only!</span>
+          <span *ngIf="regForm.submitted && fname.errors.required">*First Name is required!</span>
+        </div>
+
+        <pre>Valid? {{fname.valid}}</pre>
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="lname">Last Name<span style="color:red">*</span> </label><br>
+        <input type="text" 
+               class="form-control" 
+               name="lname" 
+               [(ngModel)]="user.name.lname" 
+               #lname="ngModel"
+               required
+               pattern="^[a-zA-Z]*$"
+               [ngClass]="{'has-danger': lname.invalid && (lname.dirty || lname.touched),
+                           'has-success': lname.valid && (lname.dirty || lname.touched)}"
+               >
+        <div *ngIf="lname.errors" class="error">
+          <span *ngIf="lname.value != '' && lname.dirty">Can contain alphabets only!</span>
+          <span *ngIf="regForm.submitted && lname.errors.required">*Last Name is required!</span>
+        </div>
+
+        <pre>Valid? {{lname.valid}}</pre>
+      
+      </div>
+
+    </fieldset>
+    
+    <br>
+
+    <div class="form-group">
+
+      <h3>Gender</h3>
+      <hr>
+
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input" id="sex1" #sex="ngModel" [(ngModel)]="user.sex" name="sex" value="Male" required/>
+        <label class="custom-control-label" for="sex1">Male</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input" id="sex2" [(ngModel)]="user.sex" #sex="ngModel" name="sex" value="Female" required/>
+        <label class="custom-control-label" for="sex2">Female</label>
+      </div><br>
+      <span  class="error" *ngIf="regForm.submitted && sex.errors.required">*Gender is required!</span>
+
+    </div>
+
+    <br>
+
+    <div class="form-group">
+
+      <h3>Contact Info</h3>
+      <hr>
+
+      <label for="email">Email<span style="color:red">*</span> </label><br>
+      <input type="text" 
+             class="form-control"
+             name="email"
+             [(ngModel)]="user.email"
+             #email="ngModel"
+             email
+             required
+             [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched),
+                           'has-success': email.valid && (email.dirty || email.touched)}"
+             >
+      <div *ngIf="email.errors" class="error">
+        <span *ngIf="email.value != '' && email.errors.email">Email must be a valid email address</span>
+        <span *ngIf="regForm.submitted && email.errors.required">*Email is required!</span>
+      </div>
+
+      <pre>Valid? {{email.valid}}</pre>
+      
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="form-group" style="text-align: center">
+    
+      <button class="btn btn-primary"
+      >Register</button>
+      &nbsp;
+      <button type="reset" class="btn btn-info" id="reset">Reset</button>
+    </div>
+    
+  </form>
+</div>
